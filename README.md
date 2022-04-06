@@ -16,6 +16,16 @@ python soccer_ranking.py -f samples/sample_input.txt
     4. Grouches, 0 pts
 ```
 
+```
+ python soccer_ranking.py -f samples/sample_input2.txt
+>>  1. Spurs, 7 pts
+    1. Tarantulas, 7 pts
+    2. Lions, 5 pts
+    3. Snakes, 4 pts
+    4. FC Awesome, 1 pt
+    5. Grouches, 0 pts
+```
+
 ## Run Tests
 ```
 pytest
