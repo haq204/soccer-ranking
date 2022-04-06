@@ -63,10 +63,14 @@ def main(input_file: IO) -> None:
     
     rankings = bracket.get_rankings()
     output = ""
-    for i, r in enumerate(rankings):
-        rank = i + 1
-        pts = "pt" if r[1] == 1 else "pts" 
-        output  = output + f"{rank}. {r[0]}, {r[1]} {pts}\n"
+    rank = 0
+    prev_points = None
+    for r in rankings:
+        pts = "pt" if r[1] == 1 else "pts"
+        if r[1] != prev_points:
+            rank += 1
+        output  = output + f"{max(1, rank)}. {r[0]}, {r[1]} {pts}\n"
+        prev_points = r[1]
     click.echo(output)
 
 if __name__ == "__main__":
