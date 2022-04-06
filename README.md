@@ -20,3 +20,12 @@ python soccer_ranking.py -f samples/sample_input.txt
 ```
 pytest
 ```
+
+
+## Potential Areas of Improvement
+1. Even though it doesn't state that the inputs could be potentially malformed, it would be nice
+   to add some error handling on mal-formed inputs
+2. I didn't bother to package it. Normally you would add a `setup.py` and upload to a PyPi server
+   which would allow to install using `pip install` and run like `soccer_ranking -f input.txt`.
+3. Personally I think the snippet to determine the number rankings for the output is a little 
+   sloppy, would like to clean that up a little more
