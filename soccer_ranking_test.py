@@ -52,15 +52,15 @@ def test_print_standings_tie_at_end():
     standings = [
         Standing("Tottenham Spurs", 9),
         Standing("Lions", 6),
-        Standing("Leopards", 1),
         Standing("Grouches", 1),
+        Standing("Leopards", 1),
     ]
     output = print_standings(standings)
     expected_str =(
         "1. Tottenham Spurs, 9 pts\n"
         "2. Lions, 6 pts\n"
-        "3. Leopards, 1 pt\n"
         "3. Grouches, 1 pt\n"
+        "3. Leopards, 1 pt\n"
     )
     assert output == expected_str
 
@@ -68,15 +68,15 @@ def test_print_standings_tie_in_middle():
     """Test output when the last two teams are tied"""
     standings = [
         Standing("Tottenham Spurs", 9),
-        Standing("Lions", 3),
         Standing("Leopards", 3),
+        Standing("Lions", 3),
         Standing("Grouches", 0),
     ]
     output = print_standings(standings)
     expected_str = (
         "1. Tottenham Spurs, 9 pts\n"
-        "2. Lions, 3 pts\n"
         "2. Leopards, 3 pts\n"
+        "2. Lions, 3 pts\n"
         "4. Grouches, 0 pts\n"
     )
     assert output == expected_str
@@ -84,15 +84,15 @@ def test_print_standings_tie_in_middle():
 def test_print_standings_tie_at_beginning():
     """Test output when the first two teams are tied"""
     standings = [
-        Standing("Tottenham Spurs", 9),
         Standing("Lions", 9),
+        Standing("Tottenham Spurs", 9),
         Standing("Leopards", 3),
         Standing("Grouches", 0),
     ]
     output = print_standings(standings)
     expected_str = (
-        "1. Tottenham Spurs, 9 pts\n"
         "1. Lions, 9 pts\n"
+        "1. Tottenham Spurs, 9 pts\n"
         "3. Leopards, 3 pts\n"
         "4. Grouches, 0 pts\n"
     )
@@ -101,17 +101,17 @@ def test_print_standings_tie_at_beginning():
 def test_print_standings_multiple_ties():
     """Test output when there are multiple ties in the standings"""
     standings = [
-        Standing("Tottenham Spurs", 9),
         Standing("Lions", 9),
-        Standing("Leopards", 3),
+        Standing("Tottenham Spurs", 9),
         Standing("Grouches", 3),
+        Standing("Leopards", 3),
     ]
     output = print_standings(standings)
     expected_str = (
-        "1. Tottenham Spurs, 9 pts\n"
         "1. Lions, 9 pts\n"
-        "3. Leopards, 3 pts\n"
+        "1. Tottenham Spurs, 9 pts\n"
         "3. Grouches, 3 pts\n"
+        "3. Leopards, 3 pts\n"
     )
     assert output == expected_str
 

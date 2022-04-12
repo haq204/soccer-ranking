@@ -82,6 +82,7 @@ def main(input_file: IO) -> None:
     
     standings = bracket.get_sorted_standings()
     # Write the string directly to stdout since it already includes newlines.
+    # Note that teams in standings are already sorted in alphbetical order in the event of a tie
     sys.stdout.write(
         print_standings(standings)
     )
