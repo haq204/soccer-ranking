@@ -43,7 +43,7 @@ def print_standings(standings: List[Standing]) -> str:
         pts_str = "pt" if team.points == 1 else "pts"
         if team.points != prev_team_points:
             rank = i + 1 # since index starts at 0
-        output = output + f"{max(1, rank)}. {team.team}, {team.points} {pts_str}\n"
+        output = output + f"{rank}. {team.team}, {team.points} {pts_str}\n"
         prev_team_points = team.points
     return output
 
@@ -82,7 +82,7 @@ def main(input_file: IO) -> None:
     
     standings = bracket.get_sorted_standings()
     # Write the string directly to stdout since it already includes newlines.
-    # Note that teams in standings are already sorted in alphbetical order in the event of a tie
+    # Note that teams in standings are already sorted in alphabetical order in the event of a tie
     sys.stdout.write(
         print_standings(standings)
     )
