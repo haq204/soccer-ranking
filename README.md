@@ -13,17 +13,17 @@ python soccer_ranking.py -f samples/sample_input.txt
     2. Lions, 5 pts
     3. FC Awesome, 1 pt
     3. Snakes, 1 pt
-    4. Grouches, 0 pts
+    5. Grouches, 0 pts
 ```
 
 ```
  python soccer_ranking.py -f samples/sample_input2.txt
 >>  1. Spurs, 7 pts
     1. Tarantulas, 7 pts
-    2. Lions, 5 pts
-    3. Snakes, 4 pts
-    4. FC Awesome, 1 pt
-    5. Grouches, 0 pts
+    3. Lions, 5 pts
+    4. Snakes, 4 pts
+    5. FC Awesome, 1 pt
+    6. Grouches, 0 pts
 ```
 
 ## Run Tests
@@ -37,5 +37,3 @@ pytest
    to add some error handling on mal-formed inputs
 2. I didn't bother to package it. Normally you would add a `setup.py` and upload to a PyPi server
    which would allow to install using `pip install` and run like `soccer_ranking -f input.txt`.
-3. Personally I think the snippet to determine the number rankings for the output is a little 
-   sloppy, would like to clean that up a little more

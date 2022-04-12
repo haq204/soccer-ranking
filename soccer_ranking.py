@@ -1,7 +1,10 @@
+from collections import namedtuple
 import sys
 from typing import IO, List, Tuple
 
 import click
+
+Standing = namedtuple('Standing', ["team", "points"])
 
 class Bracket:
     def __init__(self):
@@ -14,9 +17,9 @@ class Bracket:
         else:
             self._bracket[team] = points
 
-    def get_rankings(self) -> List[Tuple[str, int]]:
+    def get_sorted_standings(self) -> List[Standing]:
         """Return the team rankings for the bracket"""
-        standings = [(team, points) for team, points in self._bracket.items()]
+        standings = [Standing(team, points) for team, points in self._bracket.items()]
         # Sort the bracket first by point value then by team alphabetical order
         # Here we'll do a little trick. We want sort by points from biggest to smallest but in
         # the case of a tie, sort in alphabetical order. Normally we could use reverse=True but
@@ -24,9 +27,20 @@ class Bracket:
         # we negate the points value and sort on that from smallest to larget which is effectiely
         # sorting from largest to smallest once we cancel the negation. This allows us to sort
         # the way we want it without sorting twice.
-        standings = sorted(standings, key=lambda s: (-s[1], s[0]))
+        standings = sorted(standings, key=lambda s: (-s.points, s.team))
         return standings
 
+def print_standings(standings: List[Standing]) -> str:
+    output = ""
+    prev_team_points = None
+    rank = None
+    for i, team in enumerate(standings):
+        pts_str = "pt" if team.points == 1 else "pts"
+        if team.points != prev_team_points:
+            rank = i + 1 # since index starts at 0
+        output = output + f"{max(1, rank)}. {team.team}, {team.points} {pts_str}\n"
+        prev_team_points = team.points
+    return output
 
 def parse_line(bracket: Bracket, line: str) -> None:
     """Parse a result line from the input and update bracket, which keeps tracks 
@@ -61,17 +75,11 @@ def main(input_file: IO) -> None:
     for l in input_file:
         parse_line(bracket, l)
     
-    rankings = bracket.get_rankings()
-    output = ""
-    rank = 0
-    prev_points = None
-    for r in rankings:
-        pts = "pt" if r[1] == 1 else "pts"
-        if r[1] != prev_points:
-            rank += 1
-        output  = output + f"{max(1, rank)}. {r[0]}, {r[1]} {pts}\n"
-        prev_points = r[1]
-    click.echo(output)
+    standings = bracket.get_sorted_standings()
+    # Write the string directly to stdout since it already includes newlines.
+    sys.stdout.write(
+        print_standings(standings)
+    )
 
 if __name__ == "__main__":
     main()
