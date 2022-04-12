@@ -3,6 +3,7 @@ from click.testing import CliRunner
 from soccer_ranking import Bracket, parse_line, Standing, print_standings, main
 
 def test_parse_line():
+    """Test parsing a single line from an input file"""
     bracket = Bracket()
     first_game = "Tarantulas 1, FC Awesome 0"
     parse_line(bracket, first_game)
@@ -13,6 +14,7 @@ def test_parse_line():
     assert bracket._bracket == { "Tarantulas": 3, "FC Awesome": 1, "Lions": 1}
 
 def test_bracket_get_sorted_teams():
+    """Test sorting the teams in a bracket"""
     bracket = Bracket()
     bracket.update("Tottenham Spurs", 1)
     bracket.update("Lions", 6)
@@ -22,6 +24,7 @@ def test_bracket_get_sorted_teams():
     assert standings == [Standing('Lions', 6), Standing('Leopards', 3), Standing('Tottenham Spurs', 1)]
 
 def test_bracket_get_sorted_teams_with_ties():
+    """Test sorting the teams in a bracket when multiple teams have the same number of points"""
     bracket = Bracket()
     bracket.update("Tottenham Spurs", 1)
     bracket.update("Lions", 3)

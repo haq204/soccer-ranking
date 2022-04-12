@@ -31,6 +31,11 @@ class Bracket:
         return standings
 
 def print_standings(standings: List[Standing]) -> str:
+    """Print the team placements given a list of Standings.
+    
+    Teams are ranked according to standard competition (1224) ranking 
+    https://en.wikipedia.org/wiki/Ranking#Standard_competition_ranking_(%221224%22_ranking)
+    """
     output = ""
     prev_team_points = None
     rank = None
